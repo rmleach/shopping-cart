@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 const AddItem = (props) => {
 	let newItem = {
@@ -10,12 +10,6 @@ const AddItem = (props) => {
   quantity: 1
 	}
 
-
-		// const stuff = props.itemAdd.map((item, idx) => {
-		// 	return(
-		// 		<option key = {idx}>{item.name} ${item.priceInCents/100} {props.value}</option>
-		// 	)
-		// })
     return (
       <form onSubmit={props.addItem}>
         <label className = 'quantity'>
@@ -25,10 +19,8 @@ const AddItem = (props) => {
 					<input number={props.value} onChange={props.handleChange} />
 				</div>
 				<select onChange={props.handleChange}>
-			    {/* {stuff} */}
-					<option>apple</option>
-					<option>banana</option>
-					<option>orange</option>
+			    {props.products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
+					
 					
 				</select>				
 				<div>
