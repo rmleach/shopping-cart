@@ -1,22 +1,17 @@
 import React from 'react'
 
 const AddItem = (props) => {
-	let newItem = {
-		product: {
-    id: 40,
-    name: 'Mediocre Iron Watch',
-    priceInCents: 399
-  },
-  quantity: 1
-	}
+
 
     return (
+			<div className='container'>
+			<p>Total Price: ${props.total}</p>
       <form onSubmit={props.addItem}>
         <label className = 'quantity'>
           Quantity:
         </label>
 				<div>
-					<input number={props.value} onChange={props.handleChange} />
+					<input number={props.value} onChange={props.quantityChange} />
 				</div>
 				<select onChange={props.selectItem}>
 			    {props.products.map(product => <option key={product.id} value={product.name}>{product.name}</option>)}
@@ -28,6 +23,7 @@ const AddItem = (props) => {
 				</div>
         
       </form>
+			</div>
     );
 }
 

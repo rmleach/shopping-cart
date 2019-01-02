@@ -10,6 +10,7 @@ class App extends Component {
 	constructor () {
 		super()
 		this.state = {
+			cartList: [],
 			products: [
   			{ id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 },
   			{ id: 41, name: 'Heavy Duty Concrete Plate', priceInCents: 499 },
@@ -21,15 +22,37 @@ class App extends Component {
   			{ id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
   			{ id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
 			],	
-			cartList: [],
-			name: ''git
+			name: '',
+			price: 0,
+			quantity: 0,
+			id: 0,
+			total: 0,
 		}
 	}
 
+
+
 addItem = (event) => {
 	event.preventDefault()
-	console.log('even', event)
-	//add item to cartList
+	  let newItem = {
+			product: {
+    	id: this.state.id,
+      name: this.state.name,
+      price: this.state.price * this.state.quantity,
+  },
+  quantity: this.state.quantity
+	}
+	let prices = this.state.cartList.map(item => item.product.price)
+	let total = prices.reduce((acc, cur) => {
+		return acc + cur
+	}, 0)
+	total += newItem.product.price
+	this.setState({
+		cartList: this.state.cartList.concat([newItem]),
+		total: total.toFixed(2),
+		})
+
+		console.log(newItem.product.price)
 }
 
 selectItem = (event) => {
@@ -38,13 +61,18 @@ selectItem = (event) => {
 	this.setState({
 		name: event.target.value
 	})
+	let item = this.state.products.filter(item => item.name === event.target.value)
+		this.setState({
+			price: item[0].priceInCents / 100,
+			id: item[0].id
+		})
+		console.log(item)
 }
 
   quantityChange = (event) => {
     this.setState({
-			value: event.target.value
-		});
-		console.log()
+			quantity: +event.target.value
+		})
   }
 
 
@@ -64,12 +92,13 @@ selectItem = (event) => {
     return (
       <div>
 				<CartHeader/>
-				<CartItems cartItemList={cartItemList}/>
+				<CartItems cartItems={this.state.cartList}/>
 				<AddItem 
 					addItem = {this.addItem}
 					products={this.state.products}
 					selectItem={this.selectItem}
-					handleChange={this.handleChange}
+					total = {this.state.total}
+					quantityChange={this.quantityChange}
 					handleSubmit={this.handleSubmit}
 				/>
 				<CartFooter copyright='2018'/>
