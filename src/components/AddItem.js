@@ -18,8 +18,8 @@ const AddItem = (props) => {
 				<div>
 					<input number={props.value} onChange={props.handleChange} />
 				</div>
-				<select onChange={props.handleChange}>
-			    {props.products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
+				<select onChange={props.selectItem}>
+			    {props.products.map(product => <option key={product.id} value={product.name}>{product.name}</option>)}
 					
 					
 				</select>				

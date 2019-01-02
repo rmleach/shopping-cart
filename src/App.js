@@ -21,7 +21,8 @@ class App extends Component {
   			{ id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
   			{ id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
 			],	
-			cartList: []
+			cartList: [],
+			name: ''git
 		}
 	}
 
@@ -31,12 +32,13 @@ addItem = (event) => {
 	//add item to cartList
 }
 
-handleChange = (event) => {
-    this.setState({
-			value: event.target.value
-		});
-		console.log()
-  }
+selectItem = (event) => {
+  event.preventDefault()
+	console.log('selectItem called', event.target.value)
+	this.setState({
+		name: event.target.value
+	})
+}
 
   quantityChange = (event) => {
     this.setState({
@@ -66,6 +68,7 @@ handleChange = (event) => {
 				<AddItem 
 					addItem = {this.addItem}
 					products={this.state.products}
+					selectItem={this.selectItem}
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
 				/>
