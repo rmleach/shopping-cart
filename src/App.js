@@ -21,45 +21,55 @@ class App extends Component {
   			{ id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
   			{ id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
 			],	
-			value: 0		
+			cartList: []
 		}
 	}
 
+addItem = (event) => {
+	event.preventDefault()
+	console.log('even', event)
+	//add item to cartList
+}
+
+handleChange = (event) => {
+    this.setState({
+			value: event.target.value
+		});
+		console.log()
+  }
 
   quantityChange = (event) => {
     this.setState({
 			value: event.target.value
 		});
-  }
-
-  productChange = (event) => {
-    this.setState({
-			name: event.target.value
-		});
+		console.log()
   }
 
 
-  // handleSubmit = (event) => {
-  //   alert('An essay was submitted: ' + this.state.value);
-  //   event.preventDefault();
-  // }
+  handleSubmit = (event) => {
+    alert(this.state.value) 
+		console.log(this.state.products);
+    event.preventDefault(event);
+  }
 
   render() {
 		const cartItemList = [
-  		{ id: 1, product: { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 }, quantity: 1 },
-  		{ id: 2, product: { id: 41, name: 'Heavy Duty Concrete Plate', priceInCents: 499 }, quantity: 2 },
-  		{ id: 3, product: { id: 42, name: 'Intelligent Paper Knife', priceInCents: 1999 }, quantity: 1 },
+  		// { id: 1, product: { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 }, quantity: 1 },
+  		// { id: 2, product: { id: 41, name: 'Heavy Duty Concrete Plate', priceInCents: 499 }, quantity: 2 },
+  		// { id: 3, product: { id: 42, name: 'Intelligent Paper Knife', priceInCents: 1999 }, quantity: 1 },
 		]
+
     return (
       <div>
 				<CartHeader/>
-				<CartItems cartItemList={this.state.cartOrder}/>
+				<CartItems cartItemList={cartItemList}/>
 				<AddItem 
-					itemAdd={this.state.products}
-					quantityChange={this.quantityChange}
-					productChange={this.productChange}
-					/>
-				<CartFooter copyright='© 2018'/>
+					addItem = {this.addItem}
+					products={this.state.products}
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+				/>
+				<CartFooter copyright='2018'/>
       </div>
     );
   }

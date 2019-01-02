@@ -1,23 +1,35 @@
 import React, {Component} from 'react'
 
-class AddItem extends Component {
+const AddItem = (props) => {
+	let newItem = {
+		product: {
+    id: 40,
+    name: 'Mediocre Iron Watch',
+    priceInCents: 399
+  },
+  quantity: 1
+	}
 
-  render() {
-		const stuff = this.props.itemAdd.map((item, idx) => {
-			return(
-				<option key = {idx}>{item.name} ${item.priceInCents/100}</option>
-			)
-		})
+
+		// const stuff = props.itemAdd.map((item, idx) => {
+		// 	return(
+		// 		<option key = {idx}>{item.name} ${item.priceInCents/100} {props.value}</option>
+		// 	)
+		// })
     return (
-      <form>
-				<div>
+      <form onSubmit={props.addItem}>
         <label className = 'quantity'>
           Quantity:
         </label>
-					<input onChange={this.props.quantityChange} />
+				<div>
+					<input number={props.value} onChange={props.handleChange} />
 				</div>
-				<select onChange= {this.props.productChange}>
-  				{stuff}
+				<select onChange={props.handleChange}>
+			    {/* {stuff} */}
+					<option>apple</option>
+					<option>banana</option>
+					<option>orange</option>
+					
 				</select>				
 				<div>
 					<input type="submit" value="Submit" />
@@ -25,7 +37,7 @@ class AddItem extends Component {
         
       </form>
     );
-  }
 }
+
 
 export default AddItem
