@@ -11,12 +11,11 @@ const AddItem = (props) => {
           Quantity:
         </label>
 				<div>
-					<input number={props.value} onChange={props.quantityChange} />
+					<input number={props.value} onChange={props.quantityChange} required/>
 				</div>
-				<select onChange={props.selectItem}>
-			    {props.products.map(product => <option key={product.id} value={product.name}>{product.name}</option>)}
-					
-					
+				<select onChange={props.selectItem} required>
+			    {props.products.map(
+						product => <option key={product.id} value={product.name}>{product.name}</option>)}
 				</select>				
 				<div>
 					<input type="submit" value="Submit" />

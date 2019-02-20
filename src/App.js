@@ -52,12 +52,10 @@ addItem = (event) => {
 		total: total.toFixed(2),
 		})
 
-		console.log(newItem.product.price)
 }
 
 selectItem = (event) => {
   event.preventDefault()
-	console.log('selectItem called', event.target.value)
 	this.setState({
 		name: event.target.value
 	})
@@ -66,7 +64,6 @@ selectItem = (event) => {
 			price: item[0].priceInCents / 100,
 			id: item[0].id
 		})
-		console.log(item)
 }
 
   quantityChange = (event) => {
@@ -75,20 +72,7 @@ selectItem = (event) => {
 		})
   }
 
-
-  handleSubmit = (event) => {
-    alert(this.state.value) 
-		console.log(this.state.products);
-    event.preventDefault(event);
-  }
-
   render() {
-		const cartItemList = [
-  		// { id: 1, product: { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 }, quantity: 1 },
-  		// { id: 2, product: { id: 41, name: 'Heavy Duty Concrete Plate', priceInCents: 499 }, quantity: 2 },
-  		// { id: 3, product: { id: 42, name: 'Intelligent Paper Knife', priceInCents: 1999 }, quantity: 1 },
-		]
-
     return (
       <div>
 				<CartHeader/>
@@ -99,7 +83,6 @@ selectItem = (event) => {
 					selectItem={this.selectItem}
 					total = {this.state.total}
 					quantityChange={this.quantityChange}
-					handleSubmit={this.handleSubmit}
 				/>
 				<CartFooter copyright='2018'/>
       </div>
